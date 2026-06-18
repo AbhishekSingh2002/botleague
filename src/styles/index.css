@@ -1,0 +1,193 @@
+/* Bundled fonts (offline-safe, production-correct) */
+@import '@fontsource/michroma/400.css';
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/inter/700.css';
+@import '@fontsource/inter/800.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ----------------------------------------------------------------------------
+   BASE
+---------------------------------------------------------------------------- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-ink-black text-white font-body antialiased;
+  }
+  ::selection {
+    background: #ff4d4d;
+    color: #fff;
+  }
+}
+
+/* ----------------------------------------------------------------------------
+   REUSABLE COMPONENT CLASSES
+---------------------------------------------------------------------------- */
+@layer components {
+  /* Centered page shell with responsive gutters */
+  .shell {
+    @apply mx-auto w-full max-w-shell px-5 sm:px-8 lg:px-16;
+  }
+
+  /* Display headings (wide techno face) */
+  .h-display {
+    @apply font-display uppercase tracking-[0.02em] leading-[1.08];
+  }
+  /* Red eyebrow label above a heading */
+  .eyebrow {
+    @apply font-display uppercase tracking-[0.18em] text-brand-red text-xs sm:text-sm;
+  }
+  /* White eyebrow (column labels) */
+  .eyebrow-white {
+    @apply font-display uppercase tracking-[0.18em] text-white text-sm;
+  }
+
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-200
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red/70
+           focus-visible:ring-offset-2 focus-visible:ring-offset-ink-black;
+  }
+  .btn-primary {
+    @apply btn bg-brand-red text-white hover:bg-brand-redHover
+           hover:shadow-[0_8px_24px_-6px_rgba(255,77,77,0.6)] active:scale-[0.98];
+  }
+  .btn-outline {
+    @apply btn border border-white/30 text-white hover:bg-white/10 hover:border-white/60 active:scale-[0.98];
+  }
+
+  /* Surface card */
+  .card {
+    @apply rounded-2xl bg-ink-card border border-ink-border;
+  }
+
+  /* Text field */
+  .field {
+    @apply w-full rounded-md bg-ink-850 border border-ink-border text-white placeholder:text-muted
+           px-4 py-3 text-sm transition focus:outline-none focus:border-brand-red
+           focus:ring-2 focus:ring-brand-red/20;
+  }
+
+  /* Animated underline nav link */
+  .nav-link {
+    @apply relative;
+  }
+  .nav-link::after {
+    content: '';
+    @apply absolute left-0 right-0 -bottom-2 h-[3px] rounded-sm bg-brand-red scale-x-0 origin-center transition-transform duration-300;
+  }
+  .nav-link:hover::after,
+  .nav-link[aria-current='page']::after {
+    @apply scale-x-100;
+  }
+
+  /* Animated "Learn more →" arrow link */
+  .arrow-link {
+    @apply inline-flex items-center gap-2 text-brand-red text-sm font-semibold uppercase tracking-wide
+           transition-all duration-200 hover:gap-3;
+  }
+}
+
+/* ----------------------------------------------------------------------------
+   CUSTOM GRAPHICS / ATMOSPHERE (raw CSS)
+---------------------------------------------------------------------------- */
+
+/* Section backgrounds */
+.bg-vignette-red {
+  background:
+    radial-gradient(120% 90% at 80% 0%, rgba(120, 20, 20, 0.45) 0%, rgba(0, 0, 0, 0) 55%),
+    radial-gradient(80% 70% at 10% 100%, rgba(90, 15, 15, 0.3) 0%, rgba(0, 0, 0, 0) 60%),
+    #141414;
+}
+
+/* HERO — placeholder atmosphere for the Figma arena export */
+.hero-bg {
+  background:
+    linear-gradient(90deg, rgba(8, 8, 10, 0.97) 0%, rgba(8, 8, 10, 0.82) 30%, rgba(10, 10, 14, 0.35) 55%, rgba(10, 10, 14, 0.15) 100%),
+    radial-gradient(60% 90% at 22% 18%, rgba(40, 90, 220, 0.35) 0%, rgba(0, 0, 0, 0) 55%),
+    radial-gradient(55% 80% at 82% 30%, rgba(220, 60, 40, 0.4) 0%, rgba(0, 0, 0, 0) 55%),
+    radial-gradient(40% 60% at 60% 65%, rgba(255, 150, 40, 0.18) 0%, rgba(0, 0, 0, 0) 60%),
+    linear-gradient(180deg, #14161c 0%, #0a0a0d 60%, #050507 100%);
+}
+.hero-floor {
+  background:
+    radial-gradient(120% 60% at 55% 100%, rgba(60, 80, 140, 0.2) 0%, rgba(0, 0, 0, 0) 60%),
+    repeating-linear-gradient(115deg, rgba(255, 255, 255, 0.025) 0 2px, transparent 2px 46px);
+}
+
+/* Tournament bracket */
+.seed {
+  background: #454545;
+  border-radius: 6px;
+  height: 36px;
+}
+.bk-line {
+  background: #ff4d4d;
+  position: absolute;
+}
+
+/* User-journey rings + connectors */
+.journey-ring {
+  background: #0b0b0d;
+  border: 2px solid #2a1ae0;
+  box-shadow:
+    0 0 0 6px #16161a,
+    0 0 22px 2px rgba(42, 26, 224, 0.55),
+    inset 0 0 18px rgba(42, 26, 224, 0.25);
+}
+.journey-line {
+  background: linear-gradient(90deg, #1c12c8, #3322ee);
+  box-shadow: 0 0 8px rgba(42, 26, 224, 0.6);
+}
+.journey-tick {
+  background: #2a1ae0;
+}
+
+/* Circuit pattern (disciplines / leaderboard) */
+.circuit {
+  background-image:
+    radial-gradient(circle, rgba(120, 140, 200, 0.16) 1.4px, transparent 1.6px),
+    linear-gradient(rgba(90, 110, 170, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(90, 110, 170, 0.05) 1px, transparent 1px);
+  background-size: 46px 46px, 46px 46px, 46px 46px;
+}
+
+/* Leaderboard */
+.leaderboard {
+  background:
+    radial-gradient(60% 40% at 50% 8%, rgba(40, 90, 220, 0.18), transparent 60%),
+    linear-gradient(180deg, #15171c 0%, #0c0d11 100%);
+  border: 1px solid #23303f;
+  box-shadow:
+    inset 0 0 40px rgba(20, 40, 90, 0.35),
+    0 0 30px rgba(20, 40, 90, 0.25);
+}
+.lb-glow {
+  box-shadow: 0 0 10px rgba(60, 140, 255, 0.65);
+}
+.lb-row {
+  background: linear-gradient(180deg, #1b2330 0%, #10151d 100%);
+  border: 1px solid #2b3a4d;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+.lb-num {
+  font-family: 'Michroma', sans-serif;
+  letter-spacing: 0.04em;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
